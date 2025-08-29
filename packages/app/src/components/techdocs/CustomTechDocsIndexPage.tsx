@@ -126,10 +126,10 @@ const DocCardsGrid = () => {
                         <Card
                             sx={{
                                 borderRadius: 2,
-                                boxShadow: 3,
+                                boxShadow: 2,
                                 height: '100%',
                                 display: 'grid',
-                                flexDirection: 'column',
+                                flexDirection: 'row',
                                 alignItems: 'center',
                             }}
                             variant="outlined"
@@ -164,7 +164,7 @@ const DocCardsGrid = () => {
                                 </CardContent>
                             </CardActionArea>
 
-                            <Box sx={{ p: 1.5, pt: 0 }}>
+                            <Box sx={{ p: 1.5, pt: 0, textAlign: 'center' }}>
                                 <Typography
                                     component={RouterLink}
                                     to={docsLink}
@@ -186,7 +186,7 @@ const DocCardsGrid = () => {
 export const TechDocsCardsPage = () => {
     return (
         <Page themeId="documentation">
-            <Header title="Documentações" subtitle="TechDocs em layout de cards">
+            <Header title="Documentações" subtitle="Documentação e Arquiteturas de referência">
                 <HeaderLabel label="Plugin" value="TechDocs" />
                 <HeaderLabel label="Layout" value="Cards" />
             </Header>
@@ -194,27 +194,25 @@ export const TechDocsCardsPage = () => {
             <Content>
                 <Box sx={{ pt: 3, pb: 4 }}>
                     <EntityListProvider>
-                        <Grid
-                            container
-                        >
-                            <Grid item xs={12} md={3} sx={{ pr: { md: 2 } }}>
-                                <EntitySearchBar />
-                                <EntityKindPicker />
-                                <EntityOwnerPicker />
-                                <EntityTagPicker />
+                        <Grid container spacing={1} justifyContent="center" alignItems="flex-start">
+                            {/* Filtros na lateral esquerda */}
+                            <Grid item xs={12} md={3}>
+                                <Box sx={{ position: { md: 'sticky' }, top: { md: 80 } }}>
+                                    <EntitySearchBar />
+                                    <EntityKindPicker />
+                                    <EntityOwnerPicker />
+                                    <EntityTagPicker />
+                                </Box>
                             </Grid>
-
-                            {/* Grid de Cards */}
+                            {/* Grid de Cards centralizado à direita */}
                             <Grid
-                                display={'grid'}
-                                flexDirection={'row'}
-                                padding={2}   
+                                item
+                                xs={12}
                                 md={9}
+                                gap='10%'
                                 sx={{
                                     pl: { md: 4, xs: 2 },      // respiro à esquerda dos cards
                                     mt: { xs: 2, md: 0 },     // respiro no mobile
-                                    borderLeft: { md: 1 },    // divisória sutil
-                                    borderColor: 'divider',
                                 }}
                             >
                                 <DocCardsGrid />
